@@ -1,5 +1,5 @@
 describe("find element", () => {
-    it.only("by accessibility ID", async () => {
+    it("by accessibility ID", async () => {
         await driver?.pause(2000);
         // find element by accessiblity ID ~
         const appOption = $("~App");
@@ -9,5 +9,11 @@ describe("find element", () => {
         // assert
         const actionBar = $("~Action Bar");
         await expect(actionBar).toBeExisting();
+    });
+
+    it.only("by class", async () => {
+        const first = $("android.widget.TextView");
+
+        await expect(first).toHaveText("API Demos");
     });
 });
