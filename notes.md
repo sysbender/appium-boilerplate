@@ -25,3 +25,19 @@ use apkinfo to get :
 
 -   appPackage : com.android.dialer
 -   appActivity: com.android.dialer.DialtactsActivity
+
+```
+key xpath
+//android.widget.TextView[@content-desc="Phone"]
+
+
+//android.widget.ImageButton[@content-desc="key pad"]
+
+
+//android.widget.TextView[@resource-id="com.google.android.dialer:id/dialpad_key_number" and @text="1"]
+//android.widget.TextView[@resource-id="com.google.android.dialer:id/dialpad_key_number" and @text="2"]
+//android.widget.TextView[@resource-id="com.google.android.dialer:id/dialpad_key_number" and @text="*"]
+//android.widget.TextView[@resource-id="com.google.android.dialer:id/dialpad_key_number" and @text="#"]
+
+//android.widget.Button[@content-desc="dial"]
+```

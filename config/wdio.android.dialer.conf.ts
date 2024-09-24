@@ -24,21 +24,21 @@ export const config: WebdriverIO.Config = {
 
             //
             // NOTE: Change this name according to the Emulator you have created on your local machine
-            "appium:deviceName": "Media Phone API 35",
+            "appium:deviceName": "Pixel5API35",
             //
             // NOTE: Change this version according to the Emulator you have created on your local machine
             "appium:platformVersion": "15.0",
             "appium:orientation": "PORTRAIT",
             "appium:automationName": "UiAutomator2",
             // The path to the app
-            "appium:app": join(
-                process.cwd(),
-                "apps",
-                //
-                // NOTE: Change this name according to the app version you downloaded
-                "com.android.dialer"
-            ),
-            "appium:appWaitActivity": "com.android.dialer.DialtactsActivity",
+            // "appium:app": join(
+            //     process.cwd(),
+            //     "apps",
+            //     //
+            //     // NOTE: Change this name according to the app version you downloaded
+            //     "com.android.dialer"
+            // ),
+            "appium:appActivity": "com.android.dialer.DialtactsActivity",
             "appium:newCommandTimeout": 240,
         },
     ],
