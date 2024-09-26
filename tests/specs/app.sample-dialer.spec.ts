@@ -3,30 +3,54 @@ function getKeyXpath(key: string): string {
 
     //android.widget.Button[@content-desc="dial"]`;
 }
+function getAccessibilityId(key: string): string {
+    return `~${key},`;
+}
 
-function dial(keys: string) {}
+function isNumeric(char: string): boolean {
+    // Ensure the input is a single character
+    if (char.length !== 1) {
+        return false;
+    }
+
+    // Use isNaN to check if converting the character to a number results in NaN
+    return !isNaN(Number(char));
+}
 
 describe("sample dialer", () => {
     it("by accessibility ID", async () => {
+        // weather line: 1-833-794-3556
+        const weatherNumber = "1-833-794-3556";
         await driver?.pause(2000);
 
-        const keyDial = $('//android.widget.Button[@content-desc="dial"]');
-        const key5 = $(getKeyXpath("5"));
-        const key1 = $(getKeyXpath("1"));
-        const key4 = $(getKeyXpath("4"));
-        // find element by accessiblity ID ~
-        const phone = $('//android.widget.TextView[@content-desc="Phone"]');
-        // click
+        // launch dialer
+        const phone = $("~Phone");
         await phone.click();
 
-        // assert
-        const dialpad = $(
-            '//android.widget.ImageButton[@content-desc="key pad"]'
-        );
-        await dialpad.click();
-        await key5.click();
-        await key1.click();
-        await key4.click();
-        await keyDial.click();
+        const keypad = $("~key pad");
+        await keypad.click();
+        const keyIds = [
+            "0",
+            "1,",
+            "2,ABC",
+            "3,DEF",
+            "4,GHI",
+            "5,JKL",
+            "6,MNO",
+            "7,PQRS",
+            "8,TUV",
+            "9,WXYZ",
+        ];
+        // dial number
+        for (const c of weatherNumber) {
+            if (isNumeric(c)) {
+                const id = keyIds[Number(c)];
+                const key = $(`~${id}`);
+                await key.click();
+            }
+        }
+
+        const dial = $("~dial");
+        await dial.click();
     });
 });
